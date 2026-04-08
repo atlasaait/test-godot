@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhoty2vrrnj2v"]
+
+[ext_resource type="Texture2D" uid="uid://byb6umgxv6scr" path="res://images-removebg-preview.png" id="1_2vinp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bftsn"]
+size = Vector2(885.75, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbopx"]
+size = Vector2(619.563, 62.5625)
+
+[node name="game" type="Node2D"]
+
+[node name="plateforme" type="RigidBody2D" parent="."]
+mass = 0.89
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme"]
+position = Vector2(461, 578)
+scale = Vector2(4.00944, 1.37)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme"]
+position = Vector2(461, 576)
+shape = SubResource("RectangleShape2D_bftsn")
+
+[node name="plateforme 2" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme 2"]
+position = Vector2(343, 332)
+scale = Vector2(2.89111, 0.755556)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme 2"]
+position = Vector2(345, 334)
+shape = SubResource("RectangleShape2D_wbopx")
+
+[node name="plateforme 3" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme 3"]
+position = Vector2(997, 318)
+scale = Vector2(2.68444, 0.755556)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme 3"]
+position = Vector2(1003, 319)
+shape = SubResource("RectangleShape2D_wbopx")
+
+[node name="scene - plateformes" type="RigidBody2D" parent="plateforme 3"]
+
+[node name="platform 4" type="RigidBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="platform 4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platform 4"]

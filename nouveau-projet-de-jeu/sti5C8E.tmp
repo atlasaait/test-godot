@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7n5216rpj8mv"]
+
+[ext_resource type="Script" path="res://stickman.gd" id="1_3tody"]
+[ext_resource type="Texture2D" uid="uid://ufwm147rf0sg" path="res://avatars-LrV8voHTqB32jnW9-HzmABw-t240x240-removebg-preview.png" id="2_bo8ub"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hon5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bo8ub")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukn1w"]
+radius = 21.0
+height = 84.0
+
+[node name="Stickman" type="CharacterBody2D"]
+script = ExtResource("1_3tody")
+run_speed = null
+gravity_multiplier = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(25, 74)
+scale = Vector2(0.425, 0.383333)
+sprite_frames = SubResource("SpriteFrames_hon5b")
+frame_progress = 0.348622
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, 76)
+shape = SubResource("CapsuleShape2D_ukn1w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
