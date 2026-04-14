@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://jx1byqfab8sg"]
+
+[ext_resource type="Texture2D" uid="uid://byb6umgxv6scr" path="res://images-removebg-preview.png" id="1_lsr20"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbopx"]
+size = Vector2(619.563, 35.2813)
+
+[node name="plateforme 3" type="RigidBody2D"]
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(635, 171)
+scale = Vector2(2.89111, 0.755556)
+texture = ExtResource("1_lsr20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(637, 170.641)
+shape = SubResource("RectangleShape2D_wbopx")

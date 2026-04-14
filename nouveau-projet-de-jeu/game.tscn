@@ -1,0 +1,162 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhoty2vrrnj2v"]
+
+[ext_resource type="Texture2D" uid="uid://byb6umgxv6scr" path="res://images-removebg-preview.png" id="1_2vinp"]
+[ext_resource type="PackedScene" uid="uid://75ba1segn50y" path="res://stickman_alter.tscn" id="2_7neee"]
+[ext_resource type="PackedScene" uid="uid://c7n5216rpj8mv" path="res://stickman.tscn" id="2_rdoss"]
+[ext_resource type="PackedScene" uid="uid://jx1byqfab8sg" path="res://plateforme 3.tscn" id="3_m6ifx"]
+[ext_resource type="PackedScene" uid="uid://dsdgsnwgigehn" path="res://PLATEFORMES.tscn" id="4_v6bpt"]
+
+[sub_resource type="GDScript" id="GDScript_j441l"]
+script/source = "extends CharacterBody2D
+
+@export var run_speed : float = 500.0 
+@export var gravity : float = 900.0 
+
+var gravity_dir : int = 1
+
+func flip_gravity() -> void:
+	gravity_dir *= -1
+	velocity.y = 0
+	scale.y *= -1
+
+func _physics_process(delta: float) -> void:
+	
+	up_direction = Vector2.UP * -gravity_dir
+	
+	velocity.x = run_speed
+	velocity.y += gravity * gravity_dir * delta
+	
+
+	if Input.is_action_just_pressed(\"espace\") and (is_on_floor() or is_on_ceiling()):
+		flip_gravity()
+	
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bftsn"]
+size = Vector2(885.75, 67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbopx"]
+size = Vector2(619.563, 50.1406)
+
+[node name="game" type="Node2D"]
+
+[node name="Stickman" parent="." instance=ExtResource("2_rdoss")]
+position = Vector2(73, 418)
+script = SubResource("GDScript_j441l")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Stickman"]
+
+[node name="plateforme" type="RigidBody2D" parent="."]
+mass = 0.89
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme"]
+position = Vector2(461, 578)
+scale = Vector2(4.00944, 1.37)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme"]
+position = Vector2(461, 576)
+shape = SubResource("RectangleShape2D_bftsn")
+
+[node name="plateforme 2" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme 2"]
+position = Vector2(341, 283)
+scale = Vector2(2.89111, 0.755556)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme 2"]
+position = Vector2(341, 278.141)
+shape = SubResource("RectangleShape2D_wbopx")
+
+[node name="plateforme 3" type="RigidBody2D" parent="."]
+position = Vector2(-48, 2)
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme 3"]
+position = Vector2(1013, 276)
+scale = Vector2(2.80889, 0.755556)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme 3"]
+position = Vector2(1010, 275)
+shape = SubResource("RectangleShape2D_wbopx")
+
+[node name="scene - plateformes" type="RigidBody2D" parent="plateforme 3"]
+
+[node name="plateforme 4" parent="." instance=ExtResource("3_m6ifx")]
+position = Vector2(1612, 881)
+
+[node name="PLATEFORMES" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(836, 418)
+
+[node name="PLATEFORMES2" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(1731, 418)
+
+[node name="PLATEFORMES3" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(1201, 116)
+
+[node name="PLATEFORMES4" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(2347, -154)
+
+[node name="plateforme 5" type="RigidBody2D" parent="."]
+position = Vector2(-694, -257)
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="plateforme 5"]
+position = Vector2(1013, 276)
+scale = Vector2(2.80889, 0.755556)
+texture = ExtResource("1_2vinp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plateforme 5"]
+position = Vector2(1012, 265.93)
+shape = SubResource("RectangleShape2D_wbopx")
+
+[node name="scene - plateformes" type="RigidBody2D" parent="plateforme 5"]
+
+[node name="Stickman-Alter" parent="." instance=ExtResource("2_7neee")]
+position = Vector2(13, 7)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Stickman-Alter"]
+
+[node name="PLATEFORMES5" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(553, -153)
+
+[node name="PLATEFORMES6" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(5270, -145)
+
+[node name="PLATEFORMES7" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(4826, 226)
+
+[node name="PLATEFORMES8" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(4305, 621)
+
+[node name="PLATEFORMES9" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(4306, 676)
+
+[node name="PLATEFORMES10" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(3412, 678)
+
+[node name="PLATEFORMES11" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(4139, -158)
+
+[node name="PLATEFORMES12" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(3245, -156)
+
+[node name="PLATEFORMES13" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(3930, 226)
+
+[node name="PLATEFORMES14" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(3034, 226)
+
+[node name="PLATEFORMES15" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(2515, 681)
+
+[node name="PLATEFORMES16" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(2097, 116)
+
+[node name="PLATEFORMES17" parent="." instance=ExtResource("4_v6bpt")]
+position = Vector2(1450, -154)
